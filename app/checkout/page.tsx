@@ -51,23 +51,24 @@ export default function CheckoutPage() {
     try {
       const { data: { user } } = await supabase.auth.getUser()
 
-      // 1. Criar o pedido principal
+      // 1. Criar o pedido principal - VERSÃO FINAL
       const { data: pedido, error: erroPedido } = await supabase
         .from('pedidos')
         .insert({
+          cliente_id: user?.id || null, // Adicione esta linha!
           cliente_nome: form.nome,
           cliente_telefone: form.telefone,
-          cliente_email: user?.email || (form.email || null),
+          cliente_email: user?.email || form.email || null,
           status: 'pendente',
           tipo_entrega: form.tipo_entrega,
           endereco_entrega: form.tipo_entrega === 'delivery' ? form.endereco : null,
           unidade: form.tipo_entrega === 'retirada' ? form.unidade : null,
           total: cartTotal,
           forma_pagamento: form.forma_pagamento,
-          observacoes: form.observacoes || null,
-        })
-        .select()
-        .single()
+            observacoes: form.observacoes || null,
+      })
+      .select()
+      .single()
 
       if (erroPedido || !pedido) {
         console.error("Erro ao criar pedido:", erroPedido);
