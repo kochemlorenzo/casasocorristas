@@ -7,7 +7,7 @@ import { usePathname, useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
 import {
   LayoutDashboard, Package, ShoppingBag, Warehouse,
-  BarChart3, Settings, LogOut, Menu, X, ChevronRight
+  BarChart3, Settings, LogOut, Menu, ChevronRight
 } from 'lucide-react'
 
 const NAV = [
@@ -15,8 +15,8 @@ const NAV = [
   { href: '/admin/produtos', label: 'Produtos', icon: Package },
   { href: '/admin/pedidos', label: 'Pedidos', icon: ShoppingBag },
   { href: '/admin/estoque', label: 'Estoque', icon: Warehouse },
-  { href: "/admin/relatorios", label: "Relatórios", icon: BarChart3 },
-  { href: "/admin/configuracoes", label: "Configurações", icon: Settings },
+  { href: '/admin/relatorios', label: 'Relatórios', icon: BarChart3 },
+  { href: '/admin/configuracoes', label: 'Configurações', icon: Settings },
 ]
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
@@ -63,15 +63,18 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       <aside className={`fixed lg:sticky top-0 h-screen w-64 bg-gray-900 text-white flex flex-col z-30 transition-transform duration-300 ${
         sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
       }`}>
-        {/* Logo no sidebar */}
+
+        {/* Logo no sidebar — fundo branco arredondado */}
         <div className="p-5 border-b border-gray-800">
-          <Image
-            src="/logo.png"
-            alt="Casa Socorrista"
-            width={130}
-            height={44}
-            className="h-11 w-auto object-contain brightness-0 invert"
-          />
+          <div className="bg-white rounded-xl px-3 py-2 inline-block">
+            <Image
+              src="/logo.png"
+              alt="Casa Socorrista"
+              width={130}
+              height={44}
+              className="h-10 w-auto object-contain"
+            />
+          </div>
           <div className="text-xs text-gray-400 mt-2">Painel Admin</div>
         </div>
 

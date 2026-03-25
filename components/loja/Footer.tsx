@@ -10,13 +10,13 @@ export default function Footer() {
 
           {/* Logo + descrição */}
           <div>
-            <div className="mb-4">
+            <div className="mb-4 bg-white rounded-xl inline-block px-3 py-2">
               <Image
                 src="/logo.png"
                 alt="Casa Socorrista"
-                width={160}
-                height={56}
-                className="h-14 w-auto object-contain brightness-0 invert"
+                width={140}
+                height={48}
+                className="h-12 w-auto object-contain"
               />
             </div>
             <p className="text-sm leading-relaxed">

@@ -7,7 +7,7 @@ import Header from '@/components/loja/Header'
 import Footer from '@/components/loja/Footer'
 import { useCart } from '@/hooks/useCart'
 import { Eye, EyeOff, User, Mail, Lock } from 'lucide-react'
-import Link from 'next/link'
+import Image from 'next/image'
 
 export default function ContaPage() {
   const supabase = createClient()
@@ -67,9 +67,17 @@ export default function ContaPage() {
       <Header cartCount={cartCount} onCartOpen={() => {}} />
       <div className="min-h-[70vh] flex items-center justify-center p-4 bg-gray-50">
         <div className="w-full max-w-sm">
+
+          {/* Logo no lugar do CS */}
           <div className="text-center mb-8">
-            <div className="w-16 h-16 bg-brand-600 rounded-2xl flex items-center justify-center font-display font-bold text-2xl text-white mx-auto mb-4">
-              CS
+            <div className="flex justify-center mb-4">
+              <Image
+                src="/logo.png"
+                alt="Casa Socorrista"
+                width={100}
+                height={100}
+                className="h-24 w-auto object-contain"
+              />
             </div>
             <h1 className="font-display text-2xl font-bold text-gray-900">Minha Conta</h1>
           </div>
@@ -171,6 +179,7 @@ export default function ContaPage() {
               </form>
             )}
           </div>
+
         </div>
       </div>
       <Footer />
