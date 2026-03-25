@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { MapPin, Instagram } from 'lucide-react'
 
 export default function Footer() {
@@ -6,17 +7,29 @@ export default function Footer() {
     <footer className="bg-gray-900 text-gray-400 py-12">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+
+          {/* Logo + descrição */}
           <div>
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-9 h-9 bg-brand-600 rounded-xl flex items-center justify-center text-white font-bold">CS</div>
-              <span className="font-display font-bold text-white text-lg">Casa Socorrista</span>
+            <div className="mb-4">
+              <Image
+                src="/logo.png"
+                alt="Casa Socorrista"
+                width={160}
+                height={56}
+                className="h-14 w-auto object-contain brightness-0 invert"
+              />
             </div>
-            <p className="text-sm leading-relaxed">Saúde e bem-estar você encontra aqui! 💚<br/>Qualidade e cuidado em cada produto.</p>
+            <p className="text-sm leading-relaxed">
+              Saúde e bem-estar você encontra aqui! 💚<br />
+              Qualidade e cuidado em cada produto.
+            </p>
           </div>
+
+          {/* Unidades — Maiobão removido */}
           <div>
             <h4 className="text-white font-semibold mb-4">Unidades</h4>
             <ul className="space-y-2 text-sm">
-              {['Cohab Anil', 'Maiobão', 'Cidade Operária', 'Cohama'].map(u => (
+              {['Cohab Anil', 'Cidade Operária', 'Cohama'].map(u => (
                 <li key={u} className="flex items-center gap-2">
                   <MapPin size={13} className="text-brand-500 flex-shrink-0" />
                   <span>{u}</span>
@@ -24,6 +37,8 @@ export default function Footer() {
               ))}
             </ul>
           </div>
+
+          {/* Contato */}
           <div>
             <h4 className="text-white font-semibold mb-4">Contato</h4>
             <div className="space-y-3 text-sm">
@@ -38,6 +53,7 @@ export default function Footer() {
             </div>
           </div>
         </div>
+
         <div className="border-t border-gray-800 pt-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs">
           <p>© {new Date().getFullYear()} Casa Socorrista. Todos os direitos reservados.</p>
           <Link href="/admin" className="hover:text-white transition-colors">Área Administrativa</Link>

@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { ShoppingCart, Menu, X, Phone } from 'lucide-react'
 
 export default function Header({ cartCount, onCartOpen }: {
@@ -14,14 +15,17 @@ export default function Header({ cartCount, onCartOpen }: {
     <header className="sticky top-0 z-40 bg-white border-b border-gray-100 shadow-sm">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 gap-4">
+
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 flex-shrink-0">
-            <div className="w-9 h-9 bg-brand-600 rounded-xl flex items-center justify-center text-white font-display font-bold text-lg">
-              CS
-            </div>
-            <span className="font-display font-bold text-gray-900 text-lg hidden sm:block">
-              Casa Socorrista
-            </span>
+          <Link href="/" className="flex items-center flex-shrink-0">
+            <Image
+              src="/logo.png"
+              alt="Casa Socorrista"
+              width={150}
+              height={52}
+              className="h-12 w-auto object-contain"
+              priority
+            />
           </Link>
 
           {/* Nav desktop */}

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname, useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
 import {
@@ -62,14 +63,16 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       <aside className={`fixed lg:sticky top-0 h-screen w-64 bg-gray-900 text-white flex flex-col z-30 transition-transform duration-300 ${
         sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
       }`}>
+        {/* Logo no sidebar */}
         <div className="p-5 border-b border-gray-800">
-          <div className="flex items-center gap-3">
-            <div className="w-9 h-9 bg-brand-600 rounded-xl flex items-center justify-center font-bold text-lg">CS</div>
-            <div>
-              <div className="font-display font-bold text-white leading-tight">Casa Socorrista</div>
-              <div className="text-xs text-gray-400">Painel Admin</div>
-            </div>
-          </div>
+          <Image
+            src="/logo.png"
+            alt="Casa Socorrista"
+            width={130}
+            height={44}
+            className="h-11 w-auto object-contain brightness-0 invert"
+          />
+          <div className="text-xs text-gray-400 mt-2">Painel Admin</div>
         </div>
 
         <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
@@ -108,7 +111,13 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           <button onClick={() => setSidebarOpen(true)} className="p-2 rounded-lg hover:bg-gray-100">
             <Menu size={20} />
           </button>
-          <span className="font-display font-bold text-gray-900">Admin</span>
+          <Image
+            src="/logo.png"
+            alt="Casa Socorrista"
+            width={110}
+            height={36}
+            className="h-9 w-auto object-contain"
+          />
         </header>
 
         <main className="flex-1 p-4 md:p-8 overflow-auto">
