@@ -11,9 +11,9 @@ import CartSidebar from '@/components/loja/CartSidebar'
 import { useCart } from '@/hooks/useCart'
 import { MapPin, Phone, Shield, Truck, Star, ChevronRight, Leaf } from 'lucide-react'
 
+// ✅ Maiobão removido
 const UNIDADES = [
   { nome: 'Unidade Cohab', endereco: 'Av. Jerônimo Albuquerque, 54 - Cohab Anil' },
-  { nome: 'Unidade Maiobão', endereco: 'Av. 13, 17 - Maiobão' },
   { nome: 'Cidade Operária', endereco: 'Av. 203, 25-A - Cidade Operária' },
   { nome: 'Bairro Cohama', endereco: 'Av. Daniel de la Touche, nº 08 loja 02' },
 ]
@@ -91,7 +91,7 @@ export default function HomePage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {[
               { icon: Shield, title: 'Produtos Originais', desc: 'Garantia de procedência' },
-              { icon: MapPin, title: '4 Unidades', desc: 'Em toda São Luís' },
+              { icon: MapPin, title: '3 Unidades', desc: 'Em toda São Luís' },
               { icon: Star, title: 'Atendimento 5★', desc: 'Equipe especializada' },
               { icon: Truck, title: 'Delivery', desc: 'Entrega rápida' },
             ].map((b, i) => (
@@ -173,7 +173,7 @@ export default function HomePage() {
             <p className="text-brand-600 font-semibold text-sm mb-1">Estamos perto de você</p>
             <h2 className="section-title">Nossas Unidades</h2>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {UNIDADES.map((u, i) => (
               <div key={i} className="card p-6 hover:shadow-md transition-shadow">
                 <div className="w-10 h-10 bg-brand-100 rounded-xl flex items-center justify-center mb-4">
