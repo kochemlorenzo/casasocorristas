@@ -25,11 +25,11 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* Unidades — Maiobão removido */}
+          {/* Unidades */}
           <div>
             <h4 className="text-white font-semibold mb-4">Unidades</h4>
             <ul className="space-y-2 text-sm">
-              {['Cohab Anil', 'Cidade Operária', 'Cohama'].map(u => (
+              {['Cohab Anil', 'Maiobão', 'Cidade Operária', 'Cohama'].map(u => (
                 <li key={u} className="flex items-center gap-2">
                   <MapPin size={13} className="text-brand-500 flex-shrink-0" />
                   <span>{u}</span>
