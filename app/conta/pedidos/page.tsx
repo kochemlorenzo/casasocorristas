@@ -49,9 +49,10 @@ export default function MeusPedidosPage() {
   }
 
   return (
-    <>
+    <div className="min-h-screen flex flex-col">
       <Header cartCount={cartCount} onCartOpen={() => {}} />
-      <div className="container mx-auto px-4 py-10 max-w-2xl">
+
+      <div className="flex-1 container mx-auto px-4 py-10 max-w-2xl">
         <div className="flex items-center justify-between mb-8">
           <div>
             <h1 className="page-title">Meus Pedidos</h1>
@@ -125,7 +126,8 @@ export default function MeusPedidosPage() {
           </div>
         )}
       </div>
+
       <Footer />
-    </>
+    </div>
   )
 }
