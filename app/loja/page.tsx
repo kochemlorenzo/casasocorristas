@@ -7,7 +7,17 @@ import Footer from '@/components/loja/Footer'
 import ProductCard from '@/components/loja/ProductCard'
 import CartSidebar from '@/components/loja/CartSidebar'
 import { useCart } from '@/hooks/useCart'
-import { Search, SlidersHorizontal, X } from 'lucide-react'
+import { Search, SlidersHorizontal, X, Accessibility } from 'lucide-react'
+
+// Slugs das categorias PCD
+const SLUGS_PCD = [
+  'cadeirantes',
+  'idosos',
+  'baixa-visao',
+  'mobilidade-reduzida',
+  'fraldas-geriatricas',
+  'equipamentos-hospitalares',
+]
 
 export default function LojaPage() {
   const supabase = createClient()
@@ -32,6 +42,10 @@ export default function LojaPage() {
     }
     load()
   }, [])
+
+  // Separar categorias normais e PCD
+  const categoriasPCD = categorias.filter(c => SLUGS_PCD.includes(c.slug))
+  const categoriasNormais = categorias.filter(c => !SLUGS_PCD.includes(c.slug))
 
   const produtosFiltrados = produtos
     .filter(p => {
@@ -92,8 +106,8 @@ export default function LojaPage() {
           </div>
         </div>
 
-        {/* Categorias */}
-        <div className="flex gap-2 overflow-x-auto pb-2 mb-6 scrollbar-hide">
+        {/* Categorias normais */}
+        <div className="flex gap-2 overflow-x-auto pb-2 mb-3 scrollbar-hide">
           <button
             onClick={() => setCatAtiva(null)}
             className={`flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-colors ${
@@ -101,7 +115,7 @@ export default function LojaPage() {
             }`}>
             Todos
           </button>
-          {categorias.map(c => (
+          {categoriasNormais.map(c => (
             <button key={c.id}
               onClick={() => setCatAtiva(catAtiva === c.id ? null : c.id)}
               className={`flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-colors ${
@@ -112,7 +126,30 @@ export default function LojaPage() {
           ))}
         </div>
 
-        {/* Grid */}
+        {/* Seção PCD — destaque visual */}
+        {categoriasPCD.length > 0 && (
+          <div className="mb-6 bg-blue-50 border border-blue-100 rounded-2xl px-4 py-3">
+            <div className="flex items-center gap-2 mb-3">
+              <Accessibility size={16} className="text-blue-600" />
+              <span className="text-sm font-semibold text-blue-700">Acessibilidade e PCD</span>
+            </div>
+            <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
+              {categoriasPCD.map(c => (
+                <button key={c.id}
+                  onClick={() => setCatAtiva(catAtiva === c.id ? null : c.id)}
+                  className={`flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                    catAtiva === c.id
+                      ? 'bg-blue-600 text-white'
+                      : 'bg-white text-blue-700 border border-blue-200 hover:bg-blue-100'
+                  }`}>
+                  {c.nome}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Grid de produtos */}
         {loading ? (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {[...Array(12)].map((_, i) => (
@@ -136,7 +173,9 @@ export default function LojaPage() {
           </div>
         ) : (
           <>
-            <p className="text-sm text-gray-500 mb-4">{produtosFiltrados.length} produto{produtosFiltrados.length !== 1 ? 's' : ''} encontrado{produtosFiltrados.length !== 1 ? 's' : ''}</p>
+            <p className="text-sm text-gray-500 mb-4">
+              {produtosFiltrados.length} produto{produtosFiltrados.length !== 1 ? 's' : ''} encontrado{produtosFiltrados.length !== 1 ? 's' : ''}
+            </p>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
               {produtosFiltrados.map((p, i) => (
                 <div key={p.id} className="animate-in" style={{ animationDelay: `${i * 40}ms` }}>
